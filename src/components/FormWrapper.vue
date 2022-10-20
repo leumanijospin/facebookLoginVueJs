@@ -5,24 +5,22 @@
     >
       <EmailInput 
         placeholder="Adresse e-mail ou numéro de tél." 
-        v-model="userInfo.email"
-        @checkEmail="getEmailState"
-        :show="hasClicked"
+        v-model="user.email"
+        :error="emailError"
       />
       <PasswordInput  
         placeholder="Mot de passe" 
-        v-model="userInfo.password" 
-        @checkPassword="getPasswordState"
-        :show="hasClicked"
+        v-model="user.password" 
+        :error="passwordError"
     />      
       <ButtonWrapper 
         name="Se connecter" 
         class="text-[20px] bg-[#1877f2] mt-1" 
-        @click.prevent="userInfoValidate"
+        @click.prevent="login"
     />
-    <SignInOrSignUp />
+    <ForgetPasswordOrSignUp />
     </form>
-    <Links/>
+    <NewFacebookPage />
   </div>
 </template>
 
@@ -30,8 +28,8 @@
 import ButtonWrapper from './ButtonWrapper.vue';
 import EmailInput from './EmailInput.vue';
 import PasswordInput from './PasswordInput.vue';
-import SignInOrSignUp from "./SignInOrSignUp.vue";
-import Links from './Links.vue';
+import ForgetPasswordOrSignUp from "./ForgetPasswordOrSignUp.vue";
+import NewFacebookPage from './NewFacebookPage.vue';
 
 
 export default {
@@ -40,38 +38,46 @@ export default {
     ButtonWrapper, 
     EmailInput, 
     PasswordInput, 
-    Links, 
-    SignInOrSignUp 
+    NewFacebookPage, 
+    ForgetPasswordOrSignUp 
   },
   data() {
     return {
-      userInfo: {
+      user: {
         email: '',
         password:'',
       },
-      hasClicked: false,
-      state: {
-        email: true,
-        password: true,
-      }
+      emailError: "",
+      passwordError: ""
     } 
   },
   methods: {
-    userInfoValidate() {
-      this.hasClicked = true;
-      if(this.userInfo.email && this.userInfo.password) {
-        if (!this.state.email && !this.state.password) {
-        alert('successful connection!')
+    login() {
+      const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+
+      if(!this.user.email) {
+        this.emailError = 'email required!'
       }
+      else if(!this.user.email.match(pattern)) {
+        this.emailError = 'email invalid'
       }
-    },
-    getEmailState (state) {
-      console.log(state)
-      this.state.email = state
-    },
-    getPasswordState (state) {
-      console.log(state)
-      this.state.password = state
+      else {
+        this.emailError = ''
+      }
+
+      if(!this.user.password) {
+        this.passwordError = "password required!"
+      }
+      else if(this.user.password !== "bonjour") {
+        this.passwordError = "invalid password"
+      }
+      else {
+        this.passwordError = ''
+      }
+
+      if(!this.emailError && !this.passwordError) {
+        alert("tout est bon")
+      }
     }
   }
 }
