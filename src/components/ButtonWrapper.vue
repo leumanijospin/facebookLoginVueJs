@@ -1,13 +1,16 @@
 <template>
-    <button type="submit " class="rounded-md font-bold font-[' Helvetica, Arial, sans-serif'] text-white text-center h-12 w-full border-none antialiased">{{buttonName}}</button>
+    <button type="submit" class="rounded-md font-bold font-[Helvetica] text-white text-center h-12 w-full border-none antialiased">{{name}}</button>
 </template>
 
-<script setup>
-defineProps({
-   buttonName: {
-       type: String,
-       required: true
-   }
-})
+<script>
+export default {
+    name: 'ButtonWrapper',
+    props: {
+        name: {
+            type: String,
+            required: true
+        }
+    }
+}
 
 </script>
