@@ -2,7 +2,7 @@
     <button type="submit" class="rounded-md font-bold font-[Helvetica] text-white text-center h-12 w-full border-none antialiased">{{name}}</button>
 </template>
 
-<script>
+<script lang="ts">
 export default {
     name: 'ButtonWrapper',
     props: {
