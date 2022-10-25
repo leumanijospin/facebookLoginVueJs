@@ -1,3 +1,10 @@
+
+ type Error = {
+  emailError: string,
+  passwordError: string
+}
+
+
 export const login = (email: string, password: string, {emailError, passwordError}): void => {
     const pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     if(!email) {
@@ -23,10 +30,6 @@ export const login = (email: string, password: string, {emailError, passwordErro
     if(!emailError && !passwordError) {
       alert("successful connection")
     }
-    console.log(email);
-    console.log(password)
-    console.log(emailError)
-    console.log(passwordError)
   }
 
   
