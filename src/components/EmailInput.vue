@@ -10,6 +10,7 @@
 </template>
 
 <script lang="ts">
+
 export default {
   name: 'EmailInput',
   props: {

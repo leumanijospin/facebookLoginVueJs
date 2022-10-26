@@ -17,7 +17,7 @@
       <ButtonWrapper 
         name="Se connecter" 
         class="text-[20px] bg-[#1877f2] mt-1" 
-        @click.prevent="login(user.email, user.password,{emailError,passwordError})"
+        @click.prevent="login"
     />
     <ForgetPasswordOrSignUp />
     </form>
@@ -31,7 +31,7 @@ import EmailInput from './EmailInput.vue';
 import PasswordInput from './PasswordInput.vue';
 import ForgetPasswordOrSignUp from "./ForgetPasswordOrSignUp.vue";
 import NewFacebookPage from './NewFacebookPage.vue';
-import  { login } from '../utils/login'
+import {isValid} from '../utils/emailLogin'
 
 export default {
   name: 'FormWrapper',
@@ -48,11 +48,39 @@ export default {
         email:'',
         password:'',
       },
-      login,
       emailError: "",
       passwordError: ""
     } 
   },
+  methods: {
+   login(): void{
+    if(!this.user.email) {
+      this.emailError = 'email required!'
+    }
+    else if(isValid(this.user.email)) {
+      this.emailError = 'email invalid'
+    }
+    else {
+      this.emailError = ''
+    }
+
+    if(!this.user.password) {
+      this.passwordError = "password required!"
+    }
+    else if(this.user.password !== "bonjour") {
+      this.passwordError = "invalid password"
+    }
+    else {
+      this.passwordError = ''
+    }
+
+    if(!this.emailError && !this.passwordError) {
+      alert("successful connection")
+    }
+  }
 }
+
+}
+
 </script>
 
