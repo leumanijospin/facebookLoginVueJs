@@ -7,6 +7,20 @@ describe('invalid email', () => {
     })
 })
 
+describe('invalid email', () => {
+    test('helga@gmail is egal helga@gmail', () => {
+        expect(isValid('helga@gmail')).toStrictEqual(true)
+    })
+})
+
+
+describe('invalid email', () => {
+    test('helga@gmail.c is egal helga@gmail.c', () => {
+        expect(isValid('helga@gmail.c')).toStrictEqual(true)
+    })
+})
+
+
 describe('valid email', () => {
     test('helga@gmail.com is egal helga@gmail.com', () => {
         expect(isValid('helga@gmail.com')).toStrictEqual(false)
@@ -31,17 +45,5 @@ describe('valid email', () => {
     })
 })
 
-describe('invalid email', () => {
-    test('helga@gmail is egal helga@gmail', () => {
-        expect(isValid('helga@gmail')).toStrictEqual(true)
-    })
-})
-
-
-describe('invalid email', () => {
-    test('helga@gmail.c is egal helga@gmail.c', () => {
-        expect(isValid('helga@gmail.c')).toStrictEqual(true)
-    })
-})
 
 
