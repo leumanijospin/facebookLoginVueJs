@@ -1,49 +1,37 @@
-import {describe, expect, test} from '@jest/globals';
+import {describe, expect, it} from '@jest/globals';
 import { isValid } from "../utils/emailLogin";
 
-describe('invalid email', () => {
-    test('helga is not egal to helga@gmail.com', () => {
-        expect(isValid('helga')).toStrictEqual(true)
+describe('isValid', () => {
+    it("should return true if email is invalid", () => {
+        expect(isValid('helga')).toStrictEqual(true)        
     })
-})
 
-describe('invalid email', () => {
-    test('helga@gmail is egal helga@gmail', () => {
+    it("should return true if email is invalid", () => {
         expect(isValid('helga@gmail')).toStrictEqual(true)
     })
-})
 
-
-describe('invalid email', () => {
-    test('helga@gmail.c is egal helga@gmail.c', () => {
+    it("should return true if email is invalid", () => {
         expect(isValid('helga@gmail.c')).toStrictEqual(true)
     })
-})
 
-
-describe('valid email', () => {
-    test('helga@gmail.com is egal helga@gmail.com', () => {
+    it('should return false if email is valid', () => {
         expect(isValid('helga@gmail.com')).toStrictEqual(false)
     })
-})
 
-describe('valid email', () => {
-    test('helga@gmail.cm is egal helga@gmail.cm', () => {
-        expect(isValid('helga@gmail.com')).toStrictEqual(false)
+    it('should return true if email is valid', () => {
+        expect(isValid('helga@yahoo.com')).toStrictEqual(false)
     })
-})
 
-describe('valid email', () => {
-    test('helga@gmail.cm is egal helga@gmail.cm', () => {
-        expect(isValid('helga@gmail.com')).toStrictEqual(false)
+    it('should return true if email is valid', () => {
+        expect(isValid('helga@github.com')).toStrictEqual(false)
     })
-})
 
-describe('valid email', () => {
-    test('helga@mail.cm is egal helga@mail.cm', () => {
+    it('should return false if email is valid', () => {
         expect(isValid('helga@mail.com')).toStrictEqual(false)
     })
+    
+    it('should return false if email is valid', () => {
+        expect(isValid('helga@mail.fr')).toStrictEqual(false)
+    })
 })
-
-
 
