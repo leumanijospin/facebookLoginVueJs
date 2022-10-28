@@ -18,11 +18,11 @@ describe('isValid', () => {
         expect(isValid('helga@gmail.com')).toStrictEqual(false)
     })
 
-    it('should return true if email is valid', () => {
+    it('should return false if email is valid', () => {
         expect(isValid('helga@yahoo.com')).toStrictEqual(false)
     })
 
-    it('should return true if email is valid', () => {
+    it('should return false if email is valid', () => {
         expect(isValid('helga@github.com')).toStrictEqual(false)
     })
 
