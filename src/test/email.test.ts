@@ -1,37 +1,38 @@
 import {describe, expect, it} from '@jest/globals';
-import { isValid } from "../utils/emailLogin";
+import { isEmailValid } from "../utils/emailLogin";
 
-describe('isValid', () => {
-    it("should return true if email is invalid", () => {
-        expect(isValid('helga')).toStrictEqual(true)        
+describe('isEmailValid', () => {
+    it('should return true if email is valid', () => {
+        expect(isEmailValid('helga@gmail.com')).toStrictEqual(true)
     })
 
-    it("should return true if email is invalid", () => {
-        expect(isValid('helga@gmail')).toStrictEqual(true)
+    it('should return true if email is valid', () => {
+        expect(isEmailValid('helga@yahoo.com')).toStrictEqual(true)
     })
 
-    it("should return true if email is invalid", () => {
-        expect(isValid('helga@gmail.c')).toStrictEqual(true)
+    it('should return true if email is valid', () => {
+        expect(isEmailValid('helga@github.com')).toStrictEqual(true)
     })
 
-    it('should return false if email is valid', () => {
-        expect(isValid('helga@gmail.com')).toStrictEqual(false)
-    })
-
-    it('should return false if email is valid', () => {
-        expect(isValid('helga@yahoo.com')).toStrictEqual(false)
-    })
-
-    it('should return false if email is valid', () => {
-        expect(isValid('helga@github.com')).toStrictEqual(false)
-    })
-
-    it('should return false if email is valid', () => {
-        expect(isValid('helga@mail.com')).toStrictEqual(false)
+    it('should return true if email is valid', () => {
+        expect(isEmailValid('helga@mail.com')).toStrictEqual(true)
     })
     
-    it('should return false if email is valid', () => {
-        expect(isValid('helga@mail.fr')).toStrictEqual(false)
+    it('should return true if email is valid', () => {
+        expect(isEmailValid('helga@mail.fr')).toStrictEqual(true)
     })
+    
+    it("should return false if email is invalid", () => {
+        expect(isEmailValid('helga')).toStrictEqual(false)        
+    })
+
+    it("should return false if email is invalid", () => {
+        expect(isEmailValid('helga@gmail')).toStrictEqual(false)
+    })
+
+    it("should return false if email is invalid", () => {
+        expect(isEmailValid('helga@gmail.c')).toStrictEqual(false)
+    })
+
 })
 

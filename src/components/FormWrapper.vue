@@ -31,7 +31,7 @@ import EmailInput from './EmailInput.vue';
 import PasswordInput from './PasswordInput.vue';
 import ForgetPasswordOrSignUp from "./ForgetPasswordOrSignUp.vue";
 import NewFacebookPage from './NewFacebookPage.vue';
-import {isValid} from '../utils/emailLogin'
+import {isEmailValid} from '../utils/emailLogin'
 
 export default {
   name: 'FormWrapper',
@@ -54,27 +54,27 @@ export default {
   },
   methods: {
    login(): void{
-    if(!this.user.email) {
-      this.emailError = 'email required!'
-    }
-    else if(isValid(this.user.email)) {
-      this.emailError = 'email invalid'
-    }
-    else {
+    if(isEmailValid(this.user.email)) {
       this.emailError = ''
     }
-
-    if(!this.user.password) {
-      this.passwordError = "password required!"
-    }
-    else if(this.user.password !== "bonjour") {
-      this.passwordError = "invalid password"
+    else if(this.user.email.length === 0) {
+      this.emailError = 'email required'
     }
     else {
-      this.passwordError = ''
+      this.emailError = 'invalid email'
     }
 
-    if(!this.emailError && !this.passwordError) {
+    if(this.user.password === "bonjour") {
+      this.passwordError = ""
+    }
+    else if(this.user.password.length === 0) {
+      this.passwordError = "password required"
+    }
+    else {
+      this.passwordError = 'invalid email'
+    }
+
+    if(isEmailValid(this.user.email) && this.user.password === "bonjour") {
       alert("successful connection")
     }
   }
